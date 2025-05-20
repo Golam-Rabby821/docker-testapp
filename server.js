@@ -3,7 +3,7 @@ const app = express();
 const path = require("path");
 const MongoClient = require("mongodb").MongoClient;
 
-const PORT = 5050;
+const PORT = 8050;
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
@@ -12,7 +12,7 @@ const client = new MongoClient(MONGO_URL);
 
 //GET all users
 app.get("/getUsers", async (req, res) => {
-    await client.connect(URL);
+    await client.connect(MONGO_URL);
     console.log('Connected successfully to server');
 
     const db = client.db("apnacollege-db");
@@ -26,7 +26,7 @@ app.get("/getUsers", async (req, res) => {
 app.post("/addUser", async (req, res) => {
     const userObj = req.body;
     console.log(req.body);
-    await client.connect(URL);
+    await client.connect(MONGO_URL);
     console.log('Connected successfully to server');
 
     const db = client.db("apnacollege-db");
